@@ -1,0 +1,40 @@
+{
+    "name": "dlsp-e-com-ui",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "lint:check": "eslint src/**/*.{ts,tsx}",
+        "lint:write": "eslint src/**/*.{ts,tsx} --fix",
+        "prettier:check": "prettier src/**/*.{ts,tsx,scss} --check",
+        "prettier:write": "prettier src/**/*.{ts,tsx,scss} --write"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.4.3"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.24",
+        "@types/react-dom": "^18.0.8",
+        "@vitejs/plugin-react": "^2.2.0",
+        "eslint": "^7.32.0 || ^8.2.0",
+        "eslint-config-airbnb": "^19.0.4",
+        "eslint-config-airbnb-typescript": "^17.0.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-import-resolver-typescript": "^3.5.2",
+        "eslint-plugin-import": "^2.25.3",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "prettier": "2.7.1",
+        "sass": "^1.56.1",
+        "typescript": "^4.6.4",
+        "vite": "^3.2.3",
+        "vite-tsconfig-paths": "^3.6.0"
+    }
+}

@@ -1,0 +1,36 @@
+/* Media Query */
+@mixin atMaxSmallDevices {
+    @media screen and (max-width: 576px) {
+        @content;
+    }
+}
+
+@mixin atMinSmallDevices {
+    @media screen and (min-width: 576px) {
+        @content;
+    }
+}
+
+@mixin atMinMediumDevices {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin atMinLargeDevices {
+    @media screen and (min-width: 992px) {
+        @content;
+    }
+}
+
+@mixin atMinLargeDevices {
+    @media screen and (min-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin atMinXLargeDevices {
+    @media screen and (min-width: 1400px) {
+        @content;
+    }
+}
