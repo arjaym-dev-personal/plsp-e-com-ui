@@ -1,9 +1,10 @@
+import { Outlet } from "react-router-dom";
 import Layout from "layout/Layout";
 
 const LandingPage = () => {
     return (
         <Layout>
-            <h1>Hello</h1>
+            <Outlet />
         </Layout>
     );
 };
