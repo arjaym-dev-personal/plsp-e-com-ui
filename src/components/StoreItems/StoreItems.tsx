@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import { Product, Seller } from "types/TProducts";
+import { TProduct, Seller } from "types/TProducts";
+
 import { SpecialCharToDash } from "helpers/SpecialCharToDash";
 
 import Products from "utils/Product.data";
@@ -9,8 +10,8 @@ import "./StoreItems.scss";
 const StoreItems = () => {
     const navigate = useNavigate();
 
-    const handleViewProduct = (product: Product, seller: Seller) => {
-        navigate(`/${SpecialCharToDash(product.name)}`, {
+    const handleViewProduct = (product: TProduct, seller: Seller) => {
+        navigate(`/${SpecialCharToDash(product.name)}/${product.id}`, {
             state: {
                 product,
                 seller,

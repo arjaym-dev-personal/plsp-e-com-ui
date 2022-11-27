@@ -1,7 +1,10 @@
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BsFillCartPlusFill } from "react-icons/bs";
+
+import { TProduct } from "types/TProducts";
+
 import LowestPriceGuaranteedIcon from "assets/image/low-price-guaranteed.png";
 
 import Products from "utils/Product.data";
@@ -9,36 +12,47 @@ import Products from "utils/Product.data";
 import "./StoreItemsById.scss";
 
 const StoreItemsById = () => {
-    const { product } = useLocation().state;
+    const { productId } = useParams();
 
-    console.log(product);
+    const [product, setProduct] = useState<TProduct>();
 
     useEffect(() => {
+        // Check item
         function validateItem() {
             const productExist = Products.filter((prdct) =>
-                prdct.product.id === product.id ? true : false
+                prdct.product.id === parseInt(productId!) ? true : false
             )[0];
 
             if (!productExist) {
                 throw new Response("Not Found", {
                     status: 404,
                 });
+            } else {
+                setProduct(productExist.product);
             }
         }
 
         validateItem();
     }, []);
+
     return (
         <div className="product-selected-wrapper">
             <div className="product-showcase">
                 <div className="product-showcase--current-img">
-                    <img src={product.img} alt={product.name} />
+                    <img
+                        src={product && product.img}
+                        alt={product && product.name}
+                    />
                 </div>
             </div>
             <div className="product-info">
-                <span className="product-info-name">{product.name}</span>
+                <span className="product-info-name">
+                    {product && product.name}
+                </span>
                 <div className="product-info-pricing">
-                    <div className="product-price">&#8369;{product.price}</div>
+                    <div className="product-price">
+                        &#8369;{product && product.price}
+                    </div>
                     <div className="product-lpg">
                         <img
                             src={LowestPriceGuaranteedIcon}
@@ -61,7 +75,7 @@ const StoreItemsById = () => {
                                 <AiOutlinePlus />
                             </button>
                             <div className="quantity-availability">
-                                {product.quantity} pieces available
+                                {product && product.quantity} pieces available
                             </div>
                         </div>
                     </div>

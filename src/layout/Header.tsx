@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import "./Header.scss";
 
@@ -7,7 +8,9 @@ const Header = () => {
     return (
         <header className="header">
             <div className="header-logo-wrapper">
-                <img src={PlspLogo} alt="plsp logo" />
+                <Link to="/">
+                    <img src={PlspLogo} alt="plsp logo" />
+                </Link>
             </div>
             <h1 className="header-primary-title">
                 <span>Pamantasan ng lungsod ng san pablo</span>

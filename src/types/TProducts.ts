@@ -1,9 +1,10 @@
-export type Product = {
+export type TProduct = {
     id: number;
     name: string;
     quantity: number;
     price: number;
     sold: number;
+    img: string;
     color: string[];
 };
 
