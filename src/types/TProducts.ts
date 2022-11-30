@@ -7,7 +7,16 @@ export type TProduct = {
     img: string;
     color: string[];
 };
-
+export type TSelectedProduct = {
+    id: number;
+    name: string;
+    price: number;
+    img?: string;
+    color: string[];
+    quantity: number;
+    totalPrice: number;
+    totalQuantity: number;
+};
 export type Seller = {
     id: number;
     firstname: string;

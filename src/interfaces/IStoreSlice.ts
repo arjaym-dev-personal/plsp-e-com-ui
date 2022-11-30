@@ -1,5 +1,6 @@
+import { TSelectedProduct } from "types/TProducts";
 export interface IStoreSlice {
-    cart: [];
+    cart: TSelectedProduct[];
     loading: "idle" | "pending" | "succeeded" | "failed";
     success: boolean;
     error: boolean;

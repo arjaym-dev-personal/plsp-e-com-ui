@@ -3,7 +3,11 @@ import { useLocation, useParams } from "react-router-dom";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { BsFillCartPlusFill } from "react-icons/bs";
 
-import { TProduct } from "types/TProducts";
+import { useAppSelector, useAppDispatch } from "hooks/useRedux";
+
+import { addProductToCart } from "redux/slice/storeSlice";
+
+import { TProduct, TSelectedProduct } from "types/TProducts";
 
 import LowestPriceGuaranteedIcon from "assets/image/low-price-guaranteed.png";
 
@@ -12,10 +16,74 @@ import Products from "utils/Product.data";
 import "./StoreItemsById.scss";
 
 const StoreItemsById = () => {
+    const dispatch = useAppDispatch();
     const { productId } = useParams();
+
+    const { cart } = useAppSelector((state) => state.store);
 
     const [product, setProduct] = useState<TProduct>();
 
+    const [selectedProduct, setSelectedProduct] = useState<TSelectedProduct>({
+        id: 0,
+        name: "",
+        price: 0,
+        img: "",
+        color: [],
+        quantity: 1,
+        totalPrice: 0,
+        totalQuantity: 1,
+    });
+
+    const incrementTotalQuantity = () => {
+        const totalQty =
+            selectedProduct.totalQuantity >= selectedProduct.quantity
+                ? selectedProduct.quantity
+                : selectedProduct.totalQuantity + 1;
+
+        const totalPrice = totalQty * selectedProduct.price;
+
+        setSelectedProduct({
+            ...selectedProduct,
+            totalPrice: totalPrice,
+            totalQuantity: totalQty,
+        });
+    };
+
+    const decrementTotalQuantity = () => {
+        const totalQty =
+            selectedProduct.totalQuantity === 1
+                ? 1
+                : selectedProduct.totalQuantity - 1;
+        const totalPrice = totalQty * selectedProduct.price;
+        setSelectedProduct({
+            ...selectedProduct,
+            totalPrice: totalPrice,
+            totalQuantity: totalQty,
+        });
+    };
+
+    const inputTotalQuantity = (e: any) => {
+        const { value } = e.target;
+
+        if (!value) {
+            setSelectedProduct({ ...selectedProduct, totalQuantity: 1 });
+        } else {
+            const totalQty =
+                parseInt(value) > selectedProduct.quantity
+                    ? selectedProduct.quantity
+                    : parseInt(value);
+            const totalPrice = totalQty * selectedProduct.price;
+            setSelectedProduct({
+                ...selectedProduct,
+                totalPrice: totalPrice,
+                totalQuantity: totalQty,
+            });
+        }
+    };
+
+    const addToCart = () => {
+        dispatch(addProductToCart(selectedProduct));
+    };
     useEffect(() => {
         // Check item
         function validateItem() {
@@ -28,12 +96,26 @@ const StoreItemsById = () => {
                     status: 404,
                 });
             } else {
+                const { product } = productExist;
+
+                setSelectedProduct({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    img: product.img,
+                    color: product.color,
+                    quantity: product.quantity,
+                    totalPrice: product.price * 1,
+                    totalQuantity: 1,
+                });
                 setProduct(productExist.product);
             }
         }
 
         validateItem();
     }, []);
+
+    // console.log("Selected Product: ", selectedProduct);
 
     return (
         <div className="product-selected-wrapper">
@@ -67,11 +149,16 @@ const StoreItemsById = () => {
                     </div>
                     <div className="product-info-group-content">
                         <div className="quantity-indicator">
-                            <button>
+                            <button onClick={decrementTotalQuantity}>
                                 <AiOutlineMinus />
                             </button>
-                            <input type="text" />
-                            <button>
+                            <input
+                                type="text"
+                                value={selectedProduct.totalQuantity}
+                                onChange={inputTotalQuantity}
+                                min={1}
+                            />
+                            <button onClick={incrementTotalQuantity}>
                                 <AiOutlinePlus />
                             </button>
                             <div className="quantity-availability">
@@ -81,7 +168,7 @@ const StoreItemsById = () => {
                     </div>
                 </div>
                 <div className="product-cart-cta">
-                    <button>
+                    <button onClick={addToCart}>
                         <BsFillCartPlusFill />
                         <span>Add To Cart</span>
                     </button>
