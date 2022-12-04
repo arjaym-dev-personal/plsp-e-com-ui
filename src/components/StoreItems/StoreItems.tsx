@@ -30,7 +30,9 @@ const StoreItems = () => {
                     >
                         <img src={product.img} alt="" className="item-img" />
                         <div className="item-details">
-                            <p className="item-details-name">{product.name}</p>
+                            <div className="item-details-name">
+                                <p>{product.name}</p>
+                            </div>
                             <div className="item-details-label">
                                 <p className="item-details-label-price">
                                     &#8369; {product.price}

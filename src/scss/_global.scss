@@ -24,12 +24,38 @@ a {
     font-size: inherit;
 }
 
+button {
+    font-family: inherit;
+}
 #root {
     display: grid;
     grid-template-rows: min-content 100vh 40px;
 
     @include atMinMediumDevices {
         grid-template-rows: 106px minmax(calc(100vh - 146px), 100%) 40px;
+    }
+}
+
+.plsp-scrollbar {
+    /* width */
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: $green40;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $green;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
     }
 }
 @font-face {
@@ -61,4 +87,22 @@ a {
     font-family: BlackPoppins;
     src: url("../assets/font/Poppins-Black.ttf");
     font-style: normal;
+}
+
+@keyframes enter-cart-drawer {
+    0% {
+        transform: translateX(300px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes hide-cart-drawer {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(300px);
+    }
 }

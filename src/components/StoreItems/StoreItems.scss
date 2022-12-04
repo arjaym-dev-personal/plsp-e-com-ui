@@ -33,12 +33,16 @@
 
                 &-name {
                     min-height: 4.8rem;
-                    font-size: 1.2rem;
-                    word-wrap: break-word;
-                    overflow: hidden;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 2;
+                    p {
+                        font-size: 1.2rem;
+                        word-wrap: break-word;
+                        overflow: hidden;
+                        white-space: normal;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                    }
                 }
 
                 &-label {
