@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { FaAngleRight } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
@@ -10,6 +10,7 @@ import PlspLogo from "assets/image/plsp-logo.png";
 
 const Header = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const { cart } = useAppSelector((state) => state.store);
 
@@ -27,6 +28,7 @@ const Header = () => {
         setCartDrawerIsActive(false);
     };
 
+    const viewMyCart = () => navigate("/cart");
     return (
         <header className="header">
             <div className="header-logo-wrapper">
@@ -72,7 +74,9 @@ const Header = () => {
                     </div>
                     {cart.length > 0 ? (
                         <div className="cart-drawer-btn">
-                            <button>View My Shopping Cart</button>
+                            <button onClick={viewMyCart}>
+                                View My Shopping Cart
+                            </button>
                         </div>
                     ) : (
                         <p>No Products Yet</p>
