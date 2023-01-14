@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { BsFillCartPlusFill } from "react-icons/bs";
 import { FaAngleRight } from "react-icons/fa";
 import { useAppDispatch, useAppSelector } from "hooks/useRedux";
@@ -11,6 +11,7 @@ import PlspLogo from "assets/image/plsp-logo.png";
 const Header = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const { cart } = useAppSelector((state) => state.store);
 
@@ -28,7 +29,11 @@ const Header = () => {
         setCartDrawerIsActive(false);
     };
 
-    const viewMyCart = () => navigate("/cart");
+    const viewMyCart = () => {
+        setCartDrawerIsActive(false);
+        navigate("/cart");
+    };
+
     return (
         <header className="header">
             <div className="header-logo-wrapper">
@@ -40,12 +45,16 @@ const Header = () => {
                 <span>Pamantasan ng lungsod ng san pablo</span>
                 <span>Education. Empowerment. Excellence</span>
             </h1>
-            <div className="header-cart" onClick={showCartDrawer}>
-                <BsFillCartPlusFill className="header-cart-icon" />
-                {cart.length > 0 && (
-                    <span className="header-cart-qty">{cart.length}</span>
-                )}
-            </div>
+            {pathname !== "/cart" ? (
+                <div className="header-cart" onClick={showCartDrawer}>
+                    <BsFillCartPlusFill className="header-cart-icon" />
+                    {cart.length > 0 && (
+                        <span className="header-cart-qty">{cart.length}</span>
+                    )}
+                </div>
+            ) : (
+                <div></div>
+            )}
             {cartDrawerIsActive && (
                 <div className={cartDrawerClasses}>
                     <div className="cart-drawer-btn">

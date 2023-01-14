@@ -4,4 +4,164 @@
     height: max-content;
     margin-left: auto;
     margin-right: auto;
+
+    &-header {
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.4rem;
+        background: #fff;
+        margin-bottom: 12px;
+        color: #888;
+        padding: 0 20px;
+        box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%);
+        border-radius: 3px;
+
+        li {
+            text-align: center;
+            &:nth-child(1) {
+                max-width: 564px;
+                width: 100%;
+                display: flex;
+                column-gap: 12px;
+                text-align: left;
+
+                div {
+                    width: 13px;
+                }
+            }
+            &:nth-child(2) {
+                width: 15.88022%;
+            }
+            &:nth-child(3) {
+                width: 15.4265%;
+            }
+            &:nth-child(4) {
+                width: 10.43557%;
+            }
+            &:nth-child(5) {
+                width: 12.70417%;
+            }
+        }
+    }
+    .cart-items {
+        .cart-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.87);
+            padding: 20px 20px 15px;
+            margin-top: 15px;
+            background: #fff;
+            box-shadow: 0 1px 1px 0 rgb(0 0 0 / 5%);
+
+            &-col {
+                &:nth-child(2) {
+                    width: 15.88022%;
+                }
+                &:nth-child(3) {
+                    width: 15.4265%;
+                }
+                &:nth-child(4) {
+                    width: 10.43557%;
+                }
+                &:nth-child(5) {
+                    width: 12.70417%;
+                }
+            }
+            .row-1 {
+                max-width: 564px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                column-gap: 12px;
+
+                .product-img-description {
+                    display: flex;
+                    column-gap: 10px;
+                    img {
+                        width: 80px;
+                        height: 80px;
+                    }
+                    div {
+                        display: flex;
+                        align-items: center;
+                        p {
+                            word-wrap: break-word;
+                            overflow: hidden;
+                            white-space: normal;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                        }
+                    }
+                }
+            }
+
+            .unit-price {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .quantity {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                button {
+                    cursor: pointer;
+                    border: 1px solid rgba(0, 0, 0, 0.09);
+                    border-radius: 2px;
+                    background: transparent;
+                    color: rgba(0, 0, 0, 0.8);
+                    width: 32px;
+                    height: 32px;
+                }
+
+                input {
+                    width: 50px;
+                    height: 32px;
+                    font-size: 1.4rem;
+                    text-align: center;
+                    border-radius: 0;
+                    border: 1px solid rgba(0, 0, 0, 0.09);
+                    font-family: RegularPoppins;
+                }
+            }
+
+            .total-price {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    color: $green;
+                }
+            }
+
+            .actions {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                text-decoration: none;
+
+                button {
+                    border: none;
+                    background: none;
+                    cursor: pointer;
+                }
+
+                .find-similar {
+                    color: $green;
+                }
+            }
+        }
+    }
 }
