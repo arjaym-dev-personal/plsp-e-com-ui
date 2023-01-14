@@ -7,16 +7,19 @@ export type TProduct = {
     img: string;
     color: string[];
 };
-export type TSelectedProduct = {
-    id: number;
+
+export type TCartProduct = {
+    id: number | string;
     name: string;
-    price: number;
     img?: string;
-    color: string[];
+    color?: string[];
+    price: number;
     quantity: number;
     totalPrice: number;
     totalQuantity: number;
+    isChecked?: boolean;
 };
+
 export type Seller = {
     id: number;
     firstname: string;

@@ -7,7 +7,7 @@ import { useAppSelector, useAppDispatch } from "hooks/useRedux";
 
 import { addProductToCart } from "redux/slice/storeSlice";
 
-import { TProduct, TSelectedProduct } from "types/TProducts";
+import { TProduct, TCartProduct } from "types/TProducts";
 
 import LowestPriceGuaranteedIcon from "assets/image/low-price-guaranteed.png";
 
@@ -23,7 +23,7 @@ const StoreItemsById = () => {
 
     const [product, setProduct] = useState<TProduct>();
 
-    const [selectedProduct, setSelectedProduct] = useState<TSelectedProduct>({
+    const [selectedProduct, setSelectedProduct] = useState<TCartProduct>({
         id: 0,
         name: "",
         price: 0,

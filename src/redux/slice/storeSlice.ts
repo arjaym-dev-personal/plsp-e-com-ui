@@ -3,7 +3,7 @@ import { IStoreSlice } from "interfaces/IStoreSlice";
 
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { TSelectedProduct } from "types/TProducts";
+import { TCartProduct } from "types/TProducts";
 
 const initialState = {
     cart: [],
@@ -17,7 +17,7 @@ const storeSlice = createSlice({
     name: "store",
     initialState,
     reducers: {
-        addProductToCart: (state, action: PayloadAction<TSelectedProduct>) => {
+        addProductToCart: (state, action: PayloadAction<TCartProduct>) => {
             const product = action.payload;
             const copiedCart = state.cart;
             const productExistOnCart =
@@ -51,9 +51,37 @@ const storeSlice = createSlice({
                 state.cart.push(product);
             }
         },
+        cartProductUpdateQuantity: (
+            state,
+            action: PayloadAction<TCartProduct>
+        ) => {
+            const newCartProduct = action.payload;
+
+            const copiedCart = state.cart;
+
+            const btnUpdatedCart = copiedCart.map((cart) => {
+                if (cart.id === newCartProduct.id) {
+                    return { ...newCartProduct };
+                } else {
+                    return cart;
+                }
+            });
+
+            state.cart = btnUpdatedCart;
+        },
+
+        cartProductRemove: (state, action: PayloadAction<TCartProduct[]>) => {
+            const cartProduct = action.payload;
+
+            state.cart = cartProduct;
+        },
     },
 });
 
-export const { addProductToCart } = storeSlice.actions;
+export const {
+    addProductToCart,
+    cartProductUpdateQuantity,
+    cartProductRemove,
+} = storeSlice.actions;
 
 export default storeSlice.reducer;
