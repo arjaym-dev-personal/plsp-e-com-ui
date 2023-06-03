@@ -98,6 +98,25 @@ const CartPages = () => {
                         </div>
                     ))}
                 </div>
+
+                <div className="checkout-container">
+                    <div className="checkout-row-1">
+                        <div>
+                            <span>box</span>
+                        </div>
+                        <div className="select-container">
+                            <button className="selectBtn">Select All</button>
+                        </div>
+                        <div className="delete-container">
+                            <button className="deleteBtn">Delete</button>
+                        </div>
+                    </div>
+                    <div className="checkout-row-2">
+                        <div>Total : </div>
+                        <div className="totalPeso">₱0</div>
+                        <button className="checkoutBtn">Check Out</button>
+                    </div>
+                </div>
             </div>
         </React.Fragment>
     );
